@@ -1,5 +1,5 @@
 
-# Seaweed: Iodine DNS Tunneling (Red Team Training Use Only)
+# Iodine DNS Tunneling (Red Team Training Use Only)
 
 > ⚠️ **For Authorized Red Team / SOC Training Only**  
 > This setup is intended strictly for internal cybersecurity education, detection engineering, and red/blue team simulations. It must not be used for unauthorized access, evasion, or malicious behavior. All testing must occur within lab environments or under written authorization.
@@ -80,6 +80,25 @@ dig NS iodonetesting.com
 ```bash
 dig iodine.tunnel.iodonetesting.com @1.1.1.1
 ```
+
+---
+
+### 🔹 Step 4.5: Open Port 53 UDP in AWS Security Group
+
+In the AWS Console:
+
+1. Go to **EC2 → Instances → Sepsis**
+2. Open the attached **Security Group**
+3. Under **Inbound rules**, click **“Edit inbound rules”**
+4. Add:
+   - **Type**: `Custom UDP`
+   - **Protocol**: `UDP`
+   - **Port range**: `53`
+   - **Source**: `your public IP/32`
+   - **Description**: `IODINE_TUNNEL`
+
+✅ Iodine only requires **UDP port 53**.  
+🚫 You do **not** need to open TCP 53.
 
 ---
 
